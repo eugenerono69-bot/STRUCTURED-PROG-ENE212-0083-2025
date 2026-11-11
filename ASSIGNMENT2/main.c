@@ -1,66 +1,69 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+int main()
+{
+    char correctUsername[] = "John";
+    char userName[50];
 
-int main(){
-    int n = 0;
-    while(n <= 0 || n >50){
-    printf("Enter number of students(Max: 50):");
-    scanf("%d", &n);
 
-    (n >= 1 && n <= 50)? printf("You can proceed to enter the student information\n") :printf("Enter valid number of students\n");
+    while (strcasecmp (userName, correctUsername)!=0){
+        printf("Enter username: ");
+        scanf("%49s", &userName);
+        if (strcasecmp(userName, correctUsername) !=0 ){
+            printf("INCORRECT USERNAME");
+        }
+
     }
+    char correctPin[] = "9999";
+    char userPin[6];
+    int pinMatched = 0;
 
-    for(int count = 1; count <= n; count ++ ){
 
-    printf("Enter details for student %d\n", count);
+    while (!pinMatched){
+        printf("Enter your %lu-digit pin: ", (unsigned long)strlen(correctPin));
+        scanf("%5s", userPin);
 
-    int number;
-    char name[50];
+        if(strlen(userPin) != strlen(correctPin)){
+            printf("Enter %lu digits!!!\n", (unsigned long)strlen(correctPin));
+            continue;
+        }
+        if(strcmp(userPin, correctPin) == 0) {
+            pinMatched = 1;
+        }else{
+        printf("Incorrect Pin\n");
+        }
+    }
+        printf("\nGranted Access\n");
+        printf("1. Open door\n");
+        printf("2. Change username\n");
+        printf("3. Change pin\n");
+        printf("4. Exit\n");
 
-    printf("Enter your reg number:");
-    scanf("%d", &number);
 
-    printf("Enter your name:");
-    scanf("%49s", name);
+    int choice;
 
-    char grade;
-
-    int marks, v;
-    while(1){
-        printf("Enter marks: ");
-        scanf("%d", &marks);
-    if(marks> 100 || marks < 0){
-        printf("Invalid marks!!!\n");
+    while(choice > 4 || choice < 1){
+            printf("\nChoose one of these options : ...");
+            scanf("%d", &choice);
+    if(choice < 1 || choice > 4){
+        printf("Invalid option!! Please select an option from the above list");
     }
-    else{
-        break;
-    }
-    }
-    if(marks >= 70){
-        grade = 'A';
-    }
-    else if(marks >= 60){
-        grade = 'B';
-    }
-    else if(marks >=50){
-        grade = 'C';
-    }
-    else if(marks >= 40){
-        grade = 'D';
-    }
-    else {
-        grade = 'F';
-    }
-    printf("\n______________________________________________");
-    printf("\n              STUDENT INFORMATION             ");
-    printf("\n______________________________________________");
-    printf("\nRegistration no: %d",number);
-    printf("\nName: %s", name);
-    printf("\nMarks: %d", marks);
-    printf("\nGrade: %c", grade);
-    printf("\n______________________________________________\n");
-
 }
+
+    if (choice == 1){
+        printf("Acces Granted! Door unlocked");
+    }
+    else if(choice == 2){
+        printf("Change username feature coming soon");
+    }
+    else if(choice == 3){
+        printf("Change pin feature coming soon");
+    }
+    else if(choice == 4){
+        printf("Exiting system.....");
+    }
+
+
     return 0;
 }
-
